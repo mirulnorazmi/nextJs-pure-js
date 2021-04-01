@@ -8,7 +8,7 @@ function countInitial(){
 }
 
 export default function Home() {
-  
+
   /*const [count, setCount] = useState(countInitial()); //render on every run */
   const [count, setCount] = useState(() => countInitial()); //render on first run
 
