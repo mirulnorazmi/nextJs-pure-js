@@ -57,6 +57,21 @@ export default function Home() {
     inputRef.current.value = 'amirul'
   }
 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+  const [items, setItems] = useState([])
+
+  const updateWindowWidth = () => {
+    setWindowWidth(window.innerWidth)
+  }
+
+
+  useEffect(() => {
+    window.addEventListener('resize', updateWindowWidth)
+    return () => {
+      window.removeEventListener('resize', updateWindowWidth)
+    }
+  }, [])
+  
   return (
     <>
     <h2>useState Hook</h2>
@@ -81,6 +96,12 @@ export default function Home() {
         <div>{inputRef.current.value}</div>
         <button onClick={focus}>Focus</button>
       </div>
+      <br />
+      <h3>Window width</h3>
+      <div>Window Width: {windowWidth}</div>
+      {items.map(item => {
+        return <div key={item}>{item}</div>
+      })}
     </>
   )
 }
