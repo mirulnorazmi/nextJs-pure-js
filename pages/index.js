@@ -57,13 +57,16 @@ export default function Home() {
     inputRef.current.value = 'amirul'
   }
 
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-  const [items, setItems] = useState([])
+  if (typeof window !== "undefined") {
+    var winWidth = window.innerWidth;
+    // browser code
+  }
+
+  const [windowWidth, setWindowWidth] = useState(winWidth)
 
   const updateWindowWidth = () => {
     setWindowWidth(window.innerWidth)
   }
-
 
   useEffect(() => {
     window.addEventListener('resize', updateWindowWidth)
@@ -99,9 +102,6 @@ export default function Home() {
       <br />
       <h3>Window width</h3>
       <div>Window Width: {windowWidth}</div>
-      {items.map(item => {
-        return <div key={item}>{item}</div>
-      })}
     </>
   )
 }
